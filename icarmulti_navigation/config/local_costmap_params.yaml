@@ -1,0 +1,15 @@
+local_costmap:
+   global_frame: odom               # 参数定义了代价地图应该运行的坐标系 odom_combined
+   robot_base_frame: robot1/base_footprint # 参数定义了代价地图应该为机器人的基座的坐标系。
+   update_frequency: 10.0           # 参数决定了代价地图更新的频率（以Hz为单位）。 5
+   publish_frequency: 3.0           # 参数决定代价地图发布可视化信息的速率（以Hz为单位）。
+   #static_map: false               # 参数确定是否由map_server提供的地图服务来进行代价地图的初始化。
+   rolling_window: true             # 参数设置为true意味着当机器人移动时，保持机器人在本地代价地图中心。
+   width: 2.0                       # 代价地图宽度
+   height: 2.0                      # 代价地图高度
+   resolution: 0.05                 # 代价地图分辨率（米/单元格）
+   transform_tolerance: 1.0
+   plugins:
+    - {name: obstacle_layer,      type: "costmap_2d::ObstacleLayer"}
+    - {name: inflation_layer,     type: "costmap_2d::InflationLayer"}
+  

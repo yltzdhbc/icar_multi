@@ -1,0 +1,11 @@
+global_costmap:
+   global_frame: map #参数定义了代价地图应该运行的坐标系，在这种情况下，我们将选择/map坐标系。对于全局代价地图，我们用map框架来作为global框架。
+   robot_base_frame: robot1/base_footprint #参数定义了代价地图应该为机器人的基座的坐标系。这个通常不是base_link就是base_footprint。对于我们的机器人应设为base_footprint。
+   update_frequency: 1.0 #参数决定了代价地图更新的频率（以Hz为单位）。根据传感器数据，全局地图更新的频率，这个数值越大，你的计算机的CPU负担会越重，特别对于全局地图，通常设定一个相对较小、在1.0到5.0之间的值。
+   publish_frequency: 0.5 #参数决定代价地图发布可视化信息的速率（以Hz为单位）。
+   #static_map: true #参数确定是否由map_server提供的地图服务来进行代价地图的初始化。如果您没有使用现有的地图或地图服务器，请将static_map参数设置为false。当本地地图需要根据传感器数据动态更新的时候，我们通常会把这个参数设为false。
+   transform_tolerance: 1
+   plugins:
+     - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+     - {name: obstacle_layer,          type: "costmap_2d::VoxelLayer"}
+     - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
